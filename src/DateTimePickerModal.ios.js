@@ -11,8 +11,8 @@ import DateTimePicker from "@react-native-community/datetimepicker";
 import Modal from "./Modal";
 import { isIphoneX } from "./utils";
 
-export const BACKGROUND_COLOR_LIGHT = "white";
-export const BACKGROUND_COLOR_DARK = "#0E0E0E";
+export const BACKGROUND_COLOR_LIGHT = "#616060";
+export const BACKGROUND_COLOR_DARK = "#616060";
 export const BORDER_COLOR = "#d5d5d5";
 export const BORDER_RADIUS = 13;
 export const BUTTON_FONT_WEIGHT = "normal";
@@ -117,13 +117,14 @@ export class DateTimePickerModal extends React.PureComponent {
       onHide,
       ...otherProps
     } = this.props;
-    const isAppearanceModuleAvailable = !!(
-      Appearance && Appearance.getColorScheme
-    );
-    const _isDarkModeEnabled =
-      isDarkModeEnabled === undefined && isAppearanceModuleAvailable
-        ? Appearance.getColorScheme() === "dark"
-        : isDarkModeEnabled || false;
+    // const isAppearanceModuleAvailable = !!(
+    //   Appearance && Appearance.getColorScheme
+    // );
+    // const _isDarkModeEnabled =
+    //   isDarkModeEnabled === undefined && isAppearanceModuleAvailable
+    //     ? Appearance.getColorScheme() === "dark"
+    //     : isDarkModeEnabled || false;
+    const _isDarkModeEnabled = isDarkModeEnabled || false;
 
     const ConfirmButtonComponent = customConfirmButtonIOS || ConfirmButton;
     const CancelButtonComponent = customCancelButtonIOS || CancelButton;
@@ -133,7 +134,7 @@ export class DateTimePickerModal extends React.PureComponent {
     const themedContainerStyle = _isDarkModeEnabled
       ? pickerStyles.containerDark
       : pickerStyles.containerLight;
-
+    console.log('otherProps', otherProps.textColor)
     return (
       <Modal
         isVisible={isVisible}
